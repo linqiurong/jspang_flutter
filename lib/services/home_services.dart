@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:jspang_flutter_shop/model/home_base_model.dart';
+import 'package:jspang_flutter_shop/model/home_hot_model.dart';
 import 'package:jspang_flutter_shop/services/http_services.dart';
 import 'package:jspang_flutter_shop/provide/home_provide.dart';
 import 'package:provide/provide.dart';
+import 'dart:convert';
 
 class HomeService {
-  // 实例化
-  HttpServices services = new HttpServices();
-
-  // 获取首页的基本信息
-  Future getHomeBaseData(Map locate) {
-    if (locate != null) {
-      // 获取数据
-      return services.request('homeBase');
-    }
-    print("params:" + locate.toString());
-    // 获取数据
-    return services.request('homeBase', params: locate);
+  HttpServices httpServices = new HttpServices();
+  // 首页的数据处理
+  getHomeBaseData(BuildContext context) {
+    Map locate = this.homeProvide(context).getLocate();
+    print("getHomeBaseData:" + locate.toString());
+    httpServices.request('homeBase', params: locate).then((response) {
+      var responseData = json.decode(response.toString());
+      if (responseData != "") {
+        HomeBaseDataModel homeBaseData =
+            HomeBaseDataModel.fromJson(responseData);
+        // return homeBaseData;
+        this.homeProvide(context).setHomeBaseData(homeBaseData);
+      } else {
+        print("responseData:" + responseData.toString());
+      }
+    });
   }
 
-  // 获取首页热销商品
-  Future getHomeHotData() {
-    // 获取数据
-    return services.request('homeHot');
+  // 首页的热销数据处理
+  getHomeHotData(BuildContext context) {
+    httpServices.request('homeHot').then((response) {
+      print("热销商品数据" + response.toString());
+      var responseData = json.decode(response.toString());
+      if (responseData != "") {
+        HomeHotDataModel homeHotData = HomeHotDataModel.fromJson(responseData);
+        // return homeBaseData;
+        this.homeProvide(context).setHomeHotData(homeHotData);
+      } else {
+        print("responseData:" + responseData.toString());
+      }
+    });
   }
 
   // 获取 home provide
