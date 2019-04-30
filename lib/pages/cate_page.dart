@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:jspang_flutter_shop/pages/cate_page/cate_left_menu.dart';
+import 'package:jspang_flutter_shop/pages/cate_page/cate_right_top_nav.dart';
+import 'package:jspang_flutter_shop/pages/cate_page/cate_right_content.dart';
 
 class CatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("CatePage"));
+    return Container(
+        child: Row(
+      children: <Widget>[
+        CateLeftMenu(),
+        Column(
+          children: <Widget>[CateRightTopNav(), CateRightContent()],
+        )
+      ],
+    ));
   }
 }

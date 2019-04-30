@@ -5,6 +5,6 @@ const requestUrl = {
   'homeBase': baseRequestUrl + 'wxmini/homePageContent',
   'homeHot': baseRequestUrl + 'wxmini/homePageBelowConten',
   'category': baseRequestUrl + 'wxmini/getCategory',
-  'categoryList': baseRequestUrl + 'wxmini/getMallGoods',
+  'goodsList': baseRequestUrl + 'wxmini/getMallGoods',
   'goodsDetail': baseRequestUrl + 'wxmini/getGoodDetailById',
 };
