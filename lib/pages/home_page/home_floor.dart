@@ -9,7 +9,6 @@ class HomeFloor extends StatelessWidget {
   List<Floor> floor;
   // 层级
   HomeFloor(this.floorpic, this.floor);
-
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -17,17 +17,17 @@ class HomeProvide with ChangeNotifier {
   List<Recommend> _goodsRecommendList = [];
   // 一层图片
   Floor1Pic _floor1pic;
-  List<Floor1> _floor1;
+  List<Floor1> _floor1 = [];
   // 二层图片
   Floor2Pic _floor2pic;
-  List<Floor2> _floor2;
+  List<Floor2> _floor2 = [];
   // 三层图片
   Floor3Pic _floor3pic;
-  List<Floor3> _floor3;
+  List<Floor3> _floor3 = [];
   // 热销商品
-  HomeHotDataModel _homeHotDataModel;
-  // 热销商品
-  List<GoodsHotModel> _goodsHotData;
+  List<GoodsHotModel> _goodsHotData = [];
+  // 默认当前热销页面为第1页
+  int _currentHotPage = 1;
 
   IntegralMallPic _integralMallPic;
 
@@ -45,12 +45,16 @@ class HomeProvide with ChangeNotifier {
   }
 
   void setHomeHotData(HomeHotDataModel homeHotData) {
-    this._goodsHotData = homeHotData.data;
+    if (this._currentHotPage == 1) this._goodsHotData = [];
+    if (homeHotData != null) {
+      this._goodsHotData.addAll(homeHotData.data);
+      this._currentHotPage++;
+      notifyListeners();
+    }
   }
 
   // 设置值
   void setHomeBaseData(HomeBaseDataModel homeBaseData) {
-    print("^^^^^^^^^setHomeBaseData^^^^^^^^^");
     if (homeBaseData != null) {
       // 赋值
       this.setSlidesList(homeBaseData.data.slides);
@@ -133,6 +137,7 @@ class HomeProvide with ChangeNotifier {
   // 设置广告
   void setAdvertesPicture(AdvertesPicture advertesPicture) {
     this._advertesPicture = advertesPicture;
+    notifyListeners();
   }
 
   // 获取店铺信息
@@ -213,5 +218,16 @@ class HomeProvide with ChangeNotifier {
   // 三层数据
   void setFloor3(List<Floor3> floor3) {
     this._floor3 = floor3;
+  }
+
+  // 设置当前热销的页面数
+  void setCurrentHotPage(int currentHotPage) {
+    this._currentHotPage = currentHotPage;
+    notifyListeners();
+  }
+
+  // 获取当前热销页面的数
+  int getCurrentHotPage() {
+    return this._currentHotPage;
   }
 }

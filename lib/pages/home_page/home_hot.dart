@@ -8,7 +8,6 @@ class HomeHot extends StatelessWidget {
   HomeHot(this.goodsHotList);
 
   CommonWidgets commonWidgets = new CommonWidgets();
-
   @override
   Widget build(BuildContext context) {
     if (this.goodsHotList != null && this.goodsHotList.length > 0) {
@@ -22,14 +21,6 @@ class HomeHot extends StatelessWidget {
       return commonWidgets.requestingData();
     }
   }
-
-  // 热销商品
-  // Widget _goodsList() {
-  //   return GridView.count(
-  //     crossAxisCount: 2,
-  //     children: _buldGoodsList(),
-  //   );
-  // }
 
   // 热销商品
   List<Widget> _buldGoodsList() {

@@ -27,7 +27,10 @@ class HomeService {
 
   // 首页的热销数据处理
   getHomeHotData(BuildContext context) {
-    httpServices.request('homeHot').then((response) {
+    int currentHotPage = this.homeProvide(context).getCurrentHotPage();
+    print("currentHotPage:" + currentHotPage.toString());
+    Map page = {"page": currentHotPage};
+    httpServices.request('homeHot', params: page).then((response) {
       print("热销商品数据" + response.toString());
       var responseData = json.decode(response.toString());
       if (responseData != "") {

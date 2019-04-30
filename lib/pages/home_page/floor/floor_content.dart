@@ -4,12 +4,12 @@ import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FloorContent extends StatelessWidget {
-  List<Floor> floor;
+  List<Floor> floor = [];
   FloorContent(this.floor);
   CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
-    if (this.floor != null) {
+    if (this.floor.length > 0) {
       return Container(
           width: ScreenUtil().setWidth(750),
           child: Column(
