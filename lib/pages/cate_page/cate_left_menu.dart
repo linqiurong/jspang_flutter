@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jspang_flutter_shop/model/cate_list_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/services/cate_services.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:provide/provide.dart';
@@ -8,7 +8,7 @@ import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 
 class CateLeftMenu extends StatelessWidget {
   // 左侧菜单位置
-  List<CateList> _cateList = [];
+  List<Category> _cateList = [];
   CateService _cateServices = new CateService();
   CommonWidgets _commonWidgets = new CommonWidgets();
   @override
@@ -16,8 +16,8 @@ class CateLeftMenu extends StatelessWidget {
     // 获取数据
     _cateServices.getCateListData(context);
     // 获取当前点击的数据
-    String currentLeftMenuCategoryID =
-        _cateServices.cateProvide(context).getLeftMenuCategoryID();
+    // String currentLeftMenuCategoryID =
+    //     _cateServices.cateProvide(context).getLeftMenuCategoryID();
     // 获取分类数据
     this._cateList = _cateServices.cateProvide(context).getCateListData();
     return Provide<CateProvide>(builder: (context, child, value) {
@@ -75,7 +75,7 @@ class CateLeftMenu extends StatelessWidget {
 
   // 菜单单项
   Widget _menuItem(
-      BuildContext context, CateList item, String currentCategoryID) {
+      BuildContext context, Category item, String currentCategoryID) {
     return InkWell(
       onTap: () {
         // 设置当前分类ID

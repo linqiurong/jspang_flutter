@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 import 'package:jspang_flutter_shop/services/cate_services.dart';
-import 'package:jspang_flutter_shop/model/cate_list_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 
 class CateRightTopNav extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jspang_flutter_shop/model/cate_list_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/model/goods_list_model.dart';
 
 class CateProvide with ChangeNotifier {
@@ -10,7 +10,7 @@ class CateProvide with ChangeNotifier {
   int _rightTopNavIndex = 0;
   String _rightTopNavCategoryID = '';
 
-  List<CateList> _cateList = [];
+  List<Category> _cateList = [];
   List<BxMallSubDto> _subCateList = [];
 
   List<Goods> _goodsList = [];
@@ -18,7 +18,7 @@ class CateProvide with ChangeNotifier {
   int _catePage = 1;
 
   // 设置值
-  setCateListData(List<CateList> cateList) {
+  setCateListData(List<Category> cateList) {
     this._cateList = cateList;
     notifyListeners();
   }

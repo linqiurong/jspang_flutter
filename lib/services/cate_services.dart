@@ -18,6 +18,9 @@ class CateService {
       if (responseData != "") {
         CateListModel cateListModel = CateListModel.fromJson(responseData);
         this.cateProvide(context).setCateListData(cateListModel.data);
+        //
+        
+        // this.cateProvide(context).setSubCateListData(cateListModel.data);
       } else {
         print("responseData:" + responseData.toString());
       }

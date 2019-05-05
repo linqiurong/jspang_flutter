@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:jspang_flutter_shop/model/home_hot_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 
 class HomeProvide with ChangeNotifier {
   //

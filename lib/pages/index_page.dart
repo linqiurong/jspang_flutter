@@ -10,6 +10,7 @@ import 'package:jspang_flutter_shop/pages/home_page/home_hot.dart';
 
 import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:jspang_flutter_shop/model/home_hot_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/services/home_services.dart';
 import 'package:provide/provide.dart';
 import 'package:jspang_flutter_shop/provide/home_provide.dart';

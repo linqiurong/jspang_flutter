@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jspang_flutter_shop/model/home_base_model.dart';
+import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
-import 'package:jspang_flutter_shop/routes/application.dart';
+import 'package:jspang_flutter_shop/services/cate_services.dart';
+import 'package:jspang_flutter_shop/services/home_services.dart';
 
 class HomeCate extends StatelessWidget {
   List<Category> _categoryList = [];
   HomeCate(this._categoryList);
 
   CommonWidgets _commonWidgets = new CommonWidgets();
+
+  CateService _cateServices = new CateService();
+  HomeService _homeService = new HomeService();
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +51,24 @@ class HomeCate extends StatelessWidget {
 
   Widget _cateItem(BuildContext context, Category category) {
     return InkWell(
-      onTap: () => {
-            // Application.router
-            //     .navigateTo(context, '/detail/${category.mallCategoryId}')
-          },
+      onTap: () {
+        // List<BxMallSubDto> subCateListData = category.bxMallSubDto;
+        print("首页点击分类ID:" + category.mallCategoryId.toString());
+        // 设置值
+        _cateServices
+            .cateProvide(context)
+            .setLeftMenuCategoryID(category.mallCategoryId);
+        // 设置子菜单
+        _cateServices.cateProvide(context).setRightTopNavCategoryID('');
+        // 设置子菜单
+        _cateServices
+            .cateProvide(context)
+            .setSubCateListData(category.bxMallSubDto);
+        // 获取数据
+        _cateServices.getGoodsListData(context);
+        // 切换
+        _homeService.homeProvide(context).setBottonIndex(1);
+      },
       child: Container(
         child: Column(
           children: <Widget>[
