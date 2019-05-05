@@ -8,13 +8,13 @@ import 'dart:convert';
 
 class CateService {
   // 获取参数
-  HttpServices httpServices = new HttpServices();
+  HttpServices _httpServices = new HttpServices();
 
   // 首页的数据处理
   getCateListData(BuildContext context) {
-    httpServices.request('category').then((response) {
+    _httpServices.request('category').then((response) {
       var responseData = json.decode(response.toString());
-      print("分类数据:" + responseData.toString());
+      // print("分类数据:" + responseData.toString());
       if (responseData != "") {
         CateListModel cateListModel = CateListModel.fromJson(responseData);
         this.cateProvide(context).setCateListData(cateListModel.data);
@@ -40,9 +40,9 @@ class CateService {
 
     print("分类请求参数:" + params.toString());
 
-    httpServices.request('goodsList', params: params).then((response) {
+    _httpServices.request('goodsList', params: params).then((response) {
       var responseData = json.decode(response.toString());
-      print("分类对应分类ID的数据:" + responseData.toString());
+      // print("分类对应分类ID的数据:" + responseData.toString());
       if (responseData != "") {
         GoodsListModel goodsListModel = GoodsListModel.fromJson(responseData);
         this.cateProvide(context).setGoodsListData(goodsListModel.data);

@@ -4,17 +4,17 @@ import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeShopInfo extends StatelessWidget {
-  ShopInfo shopInfo;
-  HomeShopInfo(this.shopInfo);
+  ShopInfo _shopInfo;
+  HomeShopInfo(this._shopInfo);
 
   CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
-    if (this.shopInfo != null) {
+    if (this._shopInfo != null) {
       return InkWell(
         onTap: _launchUrl,
         child: Container(
-          child: Image.network(this.shopInfo.leaderImage),
+          child: Image.network(this._shopInfo.leaderImage),
         ),
       );
     } else {
@@ -23,7 +23,7 @@ class HomeShopInfo extends StatelessWidget {
   }
 
   void _launchUrl() async {
-    String url = 'tel:' + this.shopInfo.leaderPhone;
+    String url = 'tel:' + this._shopInfo.leaderPhone;
     if (await canLaunch(url)) {
       await launch(url);
     } else {

@@ -9,12 +9,14 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 
+import 'package:jspang_flutter_shop/routes/application.dart';
+
 class CateRightContent extends StatelessWidget {
   List<Goods> _goodsListData = [];
 
   CateService _cateServices = new CateService();
 
-  CommonWidgets commonWidgets = new CommonWidgets();
+  CommonWidgets _commonWidgets = new CommonWidgets();
 
   // easyRefresh
   GlobalKey<EasyRefreshState> _easyRefreshKey =
@@ -76,11 +78,11 @@ class CateRightContent extends StatelessWidget {
                 autoControl: true,
                 child: Wrap(
                   spacing: 2,
-                  children: this._buildGoodsList(),
+                  children: this._buildGoodsList(context),
                 ),
               );
             } else {
-              return commonWidgets.requestingData();
+              return _commonWidgets.requestingData();
             }
           },
         ),
@@ -89,22 +91,24 @@ class CateRightContent extends StatelessWidget {
   }
 
   // 商品列表
-  List<Widget> _buildGoodsList() {
+  List<Widget> _buildGoodsList(BuildContext context) {
     List<Widget> tmpWidgetsList = [];
     this._goodsListData.forEach((item) {
-      tmpWidgetsList.add(this._goodsItem(item));
+      tmpWidgetsList.add(this._goodsItem(context, item));
     });
     return tmpWidgetsList;
   }
 
   // 单个商品
-  Widget _goodsItem(Goods item) {
+  Widget _goodsItem(BuildContext context, Goods item) {
     return Container(
       width: ScreenUtil().setWidth(280.0),
       padding: EdgeInsets.only(top: 5.0),
       color: Colors.white,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Application.router.navigateTo(context, "/detail/${item.goodsId}");
+        },
         child: Column(
           children: <Widget>[
             Image.network(item.image, fit: BoxFit.fill),

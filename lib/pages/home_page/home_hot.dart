@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:jspang_flutter_shop/model/home_hot_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jspang_flutter_shop/routes/application.dart';
 
 class HomeHot extends StatelessWidget {
-  List<GoodsHotModel> goodsHotList = [];
-  HomeHot(this.goodsHotList);
+  List<GoodsHotModel> _goodsHotList = [];
+  HomeHot(this._goodsHotList);
 
   CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
-    if (this.goodsHotList != null && this.goodsHotList.length > 0) {
+    if (this._goodsHotList != null && this._goodsHotList.length > 0) {
       return Container(
           color: Colors.white,
           child: Wrap(
             spacing: 2,
-            children: _buldGoodsList(),
+            children: _buldGoodsList(context),
           ));
     } else {
       return commonWidgets.requestingData();
@@ -23,10 +24,10 @@ class HomeHot extends StatelessWidget {
   }
 
   // 热销商品
-  List<Widget> _buldGoodsList() {
+  List<Widget> _buldGoodsList(BuildContext context) {
     List<Widget> tmpWidget = [];
-    this.goodsHotList.forEach((item) {
-      tmpWidget.add(_goodsItem(item));
+    this._goodsHotList.forEach((item) {
+      tmpWidget.add(_goodsItem(context, item));
     });
     return tmpWidget;
   }
@@ -72,9 +73,11 @@ class HomeHot extends StatelessWidget {
   }
 
   // 单个热销商品
-  Widget _goodsItem(GoodsHotModel item) {
+  Widget _goodsItem(BuildContext context, GoodsHotModel item) {
     return InkWell(
-      onTap: () => {},
+      onTap: () {
+        Application.router.navigateTo(context, "/detail/${item.goodsId}");
+      },
       child: Container(
         width: ScreenUtil().setWidth(372.0),
         margin: EdgeInsets.only(bottom: 3.0),

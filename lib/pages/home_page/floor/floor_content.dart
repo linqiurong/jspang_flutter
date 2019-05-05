@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jspang_flutter_shop/routes/application.dart';
 
 class FloorContent extends StatelessWidget {
   List<Floor> floor = [];
@@ -13,7 +14,7 @@ class FloorContent extends StatelessWidget {
       return Container(
           width: ScreenUtil().setWidth(750),
           child: Column(
-            children: <Widget>[_firstColumn(), _secondColumn()],
+            children: <Widget>[_firstColumn(context), _secondColumn(context)],
           ));
     } else {
       return commonWidgets.requestingData();
@@ -21,28 +22,37 @@ class FloorContent extends StatelessWidget {
   }
 
   // 第一行左侧
-  Widget _firstColumnLeft() {
+  Widget _firstColumnLeft(BuildContext context) {
     return Container(
       width: ScreenUtil().setWidth(375.0),
       child: InkWell(
-        onTap: () => {},
+        onTap: () {
+          Application.router
+              .navigateTo(context, "/detail/${this.floor[0].goodsId}");
+        },
         child: Image.network("${this.floor[0].image}"),
       ),
     );
   }
 
   // 第一行右侧
-  Widget _firstColumnRight() {
+  Widget _firstColumnRight(BuildContext context) {
     return Container(
       width: ScreenUtil().setWidth(375.0),
       child: Column(
         children: <Widget>[
           InkWell(
-            onTap: () => {},
+            onTap: () => {
+                  Application.router
+                      .navigateTo(context, "/detail/${this.floor[1].goodsId}")
+                },
             child: Image.network("${this.floor[1].image}"),
           ),
           InkWell(
-            onTap: () => {},
+            onTap: () => {
+                  Application.router
+                      .navigateTo(context, "/detail/${this.floor[2].goodsId}")
+                },
             child: Image.network("${this.floor[2].image}"),
           ),
         ],
@@ -51,26 +61,28 @@ class FloorContent extends StatelessWidget {
   }
 
   // 第一行
-  Widget _firstColumn() {
+  Widget _firstColumn(BuildContext context) {
     return Row(
-      children: <Widget>[_firstColumnLeft(), _firstColumnRight()],
+      children: <Widget>[_firstColumnLeft(context), _firstColumnRight(context)],
     );
   }
 
-  Widget _secondColumn() {
+  Widget _secondColumn(BuildContext context) {
     return Row(
       children: <Widget>[
-        _secondColumnItem(this.floor[3]),
-        _secondColumnItem(this.floor[4])
+        _secondColumnItem(context, this.floor[3]),
+        _secondColumnItem(context, this.floor[4])
       ],
     );
   }
 
-  Widget _secondColumnItem(Floor floor) {
+  Widget _secondColumnItem(BuildContext context, Floor floor) {
     return Container(
       width: ScreenUtil().setWidth(375.0),
       child: InkWell(
-        onTap: () => {},
+        onTap: () => {
+              Application.router.navigateTo(context, "/detail/${floor.goodsId}")
+            },
         child: Image.network("${floor.image}"),
       ),
     );

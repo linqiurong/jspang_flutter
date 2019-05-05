@@ -5,17 +5,17 @@ import 'package:jspang_flutter_shop/model/home_base_model.dart';
 
 class HomeFloor extends StatelessWidget {
   // 一层
-  FloorPic floorpic;
+  FloorPic _floorpic;
   List<Floor> floor;
   // 层级
-  HomeFloor(this.floorpic, this.floor);
+  HomeFloor(this._floorpic, this.floor);
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 5.0),
       child: Column(
         children: <Widget>[
-          FloorTitle(floorpic),
+          FloorTitle(_floorpic),
           FloorContent(floor),
         ],
       ),

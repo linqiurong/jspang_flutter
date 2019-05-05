@@ -11,7 +11,7 @@ class HomeService {
   // 首页的数据处理
   getHomeBaseData(BuildContext context) {
     Map locate = this.homeProvide(context).getLocate();
-    print("getHomeBaseData:" + locate.toString());
+    // print("getHomeBaseData:" + locate.toString());
     httpServices.request('homeBase', params: locate).then((response) {
       var responseData = json.decode(response.toString());
       if (responseData != "") {
@@ -28,10 +28,10 @@ class HomeService {
   // 首页的热销数据处理
   getHomeHotData(BuildContext context) {
     int currentHotPage = this.homeProvide(context).getCurrentHotPage();
-    print("currentHotPage:" + currentHotPage.toString());
+    // print("currentHotPage:" + currentHotPage.toString());
     Map page = {"page": currentHotPage};
     httpServices.request('homeHot', params: page).then((response) {
-      print("热销商品数据" + response.toString());
+      // print("热销商品数据" + response.toString());
       var responseData = json.decode(response.toString());
       if (responseData != "") {
         HomeHotDataModel homeHotData = HomeHotDataModel.fromJson(responseData);
