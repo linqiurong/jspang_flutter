@@ -32,15 +32,15 @@ class CateService {
     String subCategoryID = this.cateProvide(context).getRightTopNavCategoryID();
     // 当前 page
     int currentPage = this.cateProvide(context).getCatePage();
-    Map data = {
+    Map params = {
       'categoryId': categoryID,
       'categorySubId': subCategoryID,
       'page': currentPage
     };
 
-    print("分类请求参数:" + data.toString());
+    print("分类请求参数:" + params.toString());
 
-    httpServices.request('goodsList', params: data).then((response) {
+    httpServices.request('goodsList', params: params).then((response) {
       var responseData = json.decode(response.toString());
       print("分类对应分类ID的数据:" + responseData.toString());
       if (responseData != "") {

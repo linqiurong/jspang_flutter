@@ -26,16 +26,30 @@ class CateRightContent extends StatelessWidget {
   GlobalKey<RefreshFooterState> _footerKey =
       new GlobalKey<RefreshFooterState>();
 
+  //
+  ScrollController controller = new ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: ScreenUtil().setWidth(569.0),
-      child: Provide<CateProvide>(
-        builder: (context, child, val) {
-          this._goodsListData =
-              _cateServices.cateProvide(context).getGoodsListData();
-          if (this._goodsListData != null && this._goodsListData.length > 0) {
-            return EasyRefresh(
+    return Expanded(
+      // 需要加expended 否则会报名错
+      child: Container(
+        width: ScreenUtil().setWidth(569.0),
+        child: Provide<CateProvide>(
+          builder: (context, child, val) {
+            this._goodsListData =
+                _cateServices.cateProvide(context).getGoodsListData();
+
+            // 如果当前页面为1是则跳转到顶部
+            try {
+              int catePage = _cateServices.cateProvide(context).getCatePage();
+              catePage == 1 ? controller.jumpTo(0.0) : "";
+            } catch (e) {
+              print("第一次进入");
+            }
+
+            if (this._goodsListData != null && this._goodsListData.length > 0) {
+              return EasyRefresh(
                 key: _easyRefreshKey,
                 refreshHeader: BallPulseHeader(
                   key: _headerKey,
@@ -48,37 +62,34 @@ class CateRightContent extends StatelessWidget {
                   backgroundColor: Colors.pink,
                 ),
                 onRefresh: () {
-                  print("onRefresh");
+                  _cateServices.cateProvide(context).setCatePage(1);
+                  // 获取商品数据
+                  _cateServices.getGoodsListData(context);
                 },
                 loadMore: () {
-                  print("LoadMore");
+                  // 分页+1
+                  int page = _cateServices.cateProvide(context).getCatePage();
+                  _cateServices.cateProvide(context).setCatePage(++page);
+                  // 获取商品数据
+                  _cateServices.getGoodsListData(context);
                 },
-                // child: ListView(
-                //   children: _buldGoodsList(),
-                // )
-
-                // child: Wrap(
-                //   spacing: 2,
-                //   children: this._buldGoodsList(),
-                // ),
-                child: _wrapContent());
-          } else {
-            return commonWidgets.requestingData();
-          }
-        },
+                autoControl: true,
+                child: Wrap(
+                  spacing: 2,
+                  children: this._buildGoodsList(),
+                ),
+              );
+            } else {
+              return commonWidgets.requestingData();
+            }
+          },
+        ),
       ),
     );
   }
 
-  _wrapContent() {
-    return Wrap(
-      spacing: 2,
-      children: _buldGoodsList(),
-    );
-  }
-
   // 商品列表
-  List<Widget> _buldGoodsList() {
+  List<Widget> _buildGoodsList() {
     List<Widget> tmpWidgetsList = [];
     this._goodsListData.forEach((item) {
       tmpWidgetsList.add(this._goodsItem(item));
@@ -97,13 +108,16 @@ class CateRightContent extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Image.network(item.image, fit: BoxFit.fill),
-            Text(
-              "${item.goodsName}",
-              style: TextStyle(
-                color: Colors.pink,
+            Container(
+              height: ScreenUtil().setHeight(80.0),
+              child: Text(
+                "${item.goodsName}",
+                style: TextStyle(
+                  color: Colors.pink,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
             ),
             Row(
               children: <Widget>[

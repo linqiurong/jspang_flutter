@@ -10,9 +10,9 @@ class CateRightTopNav extends StatelessWidget {
   List<BxMallSubDto> _bxMallSubDto = [];
   // 子菜单栏目ID
   String _rightTopCategoryID = '';
-  CateService cateServices = new CateService();
+  CateService _cateServices = new CateService();
 
-  CommonWidgets commonWidgets = new CommonWidgets();
+  CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,11 +25,11 @@ class CateRightTopNav extends StatelessWidget {
       child: Provide<CateProvide>(
         builder: (context, child, val) {
           _bxMallSubDto =
-              cateServices.cateProvide(context).getSubCateListData();
+              _cateServices.cateProvide(context).getSubCateListData();
           if (_bxMallSubDto != null && _bxMallSubDto.length > 0) {
             // 获取点击的子栏目
             this._rightTopCategoryID =
-                cateServices.cateProvide(context).getRightTopNavCategoryID();
+                _cateServices.cateProvide(context).getRightTopNavCategoryID();
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: this._bxMallSubDto.length,
@@ -38,7 +38,7 @@ class CateRightTopNav extends StatelessWidget {
               },
             );
           } else {
-            return commonWidgets.requestingData();
+            return _commonWidgets.requestingData();
           }
         },
       ),
@@ -59,14 +59,14 @@ class CateRightTopNav extends StatelessWidget {
     return InkWell(
       onTap: () {
         // 设置子菜单
-        cateServices
+        _cateServices
             .cateProvide(context)
             .setRightTopNavCategoryID(item.mallSubId);
-        // 重新获取数据
         // 设置为1
-        cateServices.cateProvide(context).setCatePage(1);
+        _cateServices.cateProvide(context).setCatePage(1);
+
         // 获取当前点击分类下的商品列表
-        cateServices.getGoodsListData(context);
+        _cateServices.getGoodsListData(context);
       },
       child: Container(
           padding: EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 10.0),

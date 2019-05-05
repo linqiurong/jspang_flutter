@@ -9,33 +9,33 @@ import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 class CateLeftMenu extends StatelessWidget {
   // 左侧菜单位置
   List<CateList> _cateList = [];
-  CateService cateServices = new CateService();
-  CommonWidgets commonWidgets = new CommonWidgets();
+  CateService _cateServices = new CateService();
+  CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     // 获取数据
-    cateServices.getCateListData(context);
+    _cateServices.getCateListData(context);
     // 获取当前点击的数据
     String currentLeftMenuCategoryID =
-        cateServices.cateProvide(context).getLeftMenuCategoryID();
+        _cateServices.cateProvide(context).getLeftMenuCategoryID();
     // 获取分类数据
-    this._cateList = cateServices.cateProvide(context).getCateListData();
+    this._cateList = _cateServices.cateProvide(context).getCateListData();
     return Provide<CateProvide>(builder: (context, child, value) {
       // 获取分类数据
-      this._cateList = cateServices.cateProvide(context).getCateListData();
+      this._cateList = _cateServices.cateProvide(context).getCateListData();
       if (this._cateList != null && this._cateList.length > 0) {
         // String defaultCategoryID = this._cateList[0].mallCategoryId;
         // print("defaultCategoryID:" + defaultCategoryID);
         // // 如果第一次加载则给默认值
         // if (currentLeftMenuCategoryID == '') {
         //   // 设置默认为当前第一个分类ID
-        //   cateServices
-        //       .cateProvide(context)
-        //       .setLeftMenuCategoryID(defaultCategoryID);
+        // _cateServices
+        //     .cateProvide(context)
+        //     .setLeftMenuCategoryID(defaultCategoryID);
         //   // 设置默认为当前第一个子分类
-        //   cateServices
-        //       .cateProvide(context)
-        //       .setSubCateListData(this._cateList[0].bxMallSubDto);
+        // _cateServices
+        //     .cateProvide(context)
+        //     .setSubCateListData(this._cateList[0].bxMallSubDto);
         // }
         return Container(
           child: this._menuList(context),
@@ -47,7 +47,7 @@ class CateLeftMenu extends StatelessWidget {
                       color: Colors.black12))),
         );
       } else {
-        return commonWidgets.requestingData();
+        return _commonWidgets.requestingData();
       }
     });
   }
@@ -65,7 +65,7 @@ class CateLeftMenu extends StatelessWidget {
   List<Widget> _buldMenuList(BuildContext context) {
     List<Widget> widgetList = [];
     String currentCategoryID =
-        cateServices.cateProvide(context).getLeftMenuCategoryID();
+        _cateServices.cateProvide(context).getLeftMenuCategoryID();
     this._cateList.forEach((item) {
       return widgetList.add(_menuItem(context, item, currentCategoryID));
     });
@@ -79,17 +79,19 @@ class CateLeftMenu extends StatelessWidget {
     return InkWell(
       onTap: () {
         // 设置当前分类ID
-        cateServices
+        _cateServices
             .cateProvide(context)
             .setLeftMenuCategoryID(item.mallCategoryId);
         // 设置当前分类的子分类
-        cateServices.cateProvide(context).setSubCateListData(item.bxMallSubDto);
+        _cateServices
+            .cateProvide(context)
+            .setSubCateListData(item.bxMallSubDto);
         // 设置为空
-        cateServices.cateProvide(context).setRightTopNavCategoryID("");
+        _cateServices.cateProvide(context).setRightTopNavCategoryID("");
         // 设置为1
-        cateServices.cateProvide(context).setCatePage(1);
+        _cateServices.cateProvide(context).setCatePage(1);
         // 获取当前点击分类下的商品列表
-        cateServices.getGoodsListData(context);
+        _cateServices.getGoodsListData(context);
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(8.0, 14.0, 14.0, 8.0),

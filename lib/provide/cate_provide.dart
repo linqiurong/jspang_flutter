@@ -25,7 +25,7 @@ class CateProvide with ChangeNotifier {
 
   // 设置值
   setGoodsListData(List<Goods> goodsList) {
-    this._goodsList = goodsList;
+    this._goodsList.addAll(goodsList);
     notifyListeners();
   }
 
@@ -84,6 +84,7 @@ class CateProvide with ChangeNotifier {
 
   // 设置左侧顶部菜单位置
   setLeftMenuCategoryID(String categoryID) {
+    this._goodsList = [];
     this._leftMenuCategoryID = categoryID;
     notifyListeners();
   }
@@ -95,6 +96,7 @@ class CateProvide with ChangeNotifier {
 
   // 设置右侧顶部菜单位置
   setRightTopNavCategoryID(String categoryID) {
+    this._goodsList = [];
     this._rightTopNavCategoryID = categoryID;
     notifyListeners();
   }
