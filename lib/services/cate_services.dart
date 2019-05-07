@@ -4,6 +4,7 @@ import 'package:provide/provide.dart';
 import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 import 'package:jspang_flutter_shop/model/cate_list_model.dart';
 import 'package:jspang_flutter_shop/model/goods_list_model.dart';
+import 'package:toast/toast.dart';
 import 'dart:convert';
 
 class CateService {
@@ -17,10 +18,19 @@ class CateService {
       // print("分类数据:" + responseData.toString());
       if (responseData != "") {
         CateListModel cateListModel = CateListModel.fromJson(responseData);
+
         this.cateProvide(context).setCateListData(cateListModel.data);
         //
-        
-        // this.cateProvide(context).setSubCateListData(cateListModel.data);
+        String cateID = this.cateProvide(context).getLeftMenuCategoryID();
+        if (cateID == "" || cateID == null) {
+          this
+              .cateProvide(context)
+              .setLeftMenuCategoryID(cateListModel.data[0].mallCategoryId);
+
+          this
+              .cateProvide(context)
+              .setSubCateListData(cateListModel.data[0].bxMallSubDto);
+        }
       } else {
         print("responseData:" + responseData.toString());
       }
@@ -41,14 +51,19 @@ class CateService {
       'page': currentPage
     };
 
-    print("分类请求参数:" + params.toString());
+    // print("分类请求参数:" + params.toString());
 
     _httpServices.request('goodsList', params: params).then((response) {
       var responseData = json.decode(response.toString());
       // print("分类对应分类ID的数据:" + responseData.toString());
-      if (responseData != "") {
+      if (responseData != null) {
         GoodsListModel goodsListModel = GoodsListModel.fromJson(responseData);
         this.cateProvide(context).setGoodsListData(goodsListModel.data);
+        if (goodsListModel.data == null) {
+          //
+          Toast.show("我是有底线的", context,
+              duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+        }
       } else {
         print("responseData:" + responseData.toString());
       }

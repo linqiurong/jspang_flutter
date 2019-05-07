@@ -19,7 +19,7 @@ class HomeCate extends StatelessWidget {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(top: 5.0),
-      height: ScreenUtil().setHeight(260),
+      height: ScreenUtil().setHeight(330),
       padding: EdgeInsets.all(3.0),
       child: _cateList(context),
     );

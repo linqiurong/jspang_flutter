@@ -25,6 +25,7 @@ class CateLeftMenu extends StatelessWidget {
       this._cateList = _cateServices.cateProvide(context).getCateListData();
       if (this._cateList != null && this._cateList.length > 0) {
         return Container(
+          width: ScreenUtil().setWidth(178),
           child: this._menuList(context),
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -41,7 +42,7 @@ class CateLeftMenu extends StatelessWidget {
 
   Widget _menuList(context) {
     return Container(
-      width: ScreenUtil().setWidth(180.0),
+      //width: ScreenUtil().setWidth(170.0),
       child: ListView(
         scrollDirection: Axis.vertical,
         children: this._buldMenuList(context),

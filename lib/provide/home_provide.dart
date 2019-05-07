@@ -47,7 +47,7 @@ class HomeProvide with ChangeNotifier {
 
   void setHomeHotData(HomeHotDataModel homeHotData) {
     if (this._currentHotPage == 1) this._goodsHotData = [];
-    if (homeHotData != null) {
+    if (homeHotData.data != null) {
       this._goodsHotData.addAll(homeHotData.data);
       this._currentHotPage++;
       notifyListeners();

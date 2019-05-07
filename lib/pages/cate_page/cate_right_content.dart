@@ -34,6 +34,8 @@ class CateRightContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 获取
+    _cateServices.getGoodsListData(context);
     return Expanded(
       // 需要加expended 否则会报名错
       child: Container(
@@ -48,10 +50,10 @@ class CateRightContent extends StatelessWidget {
               int catePage = _cateServices.cateProvide(context).getCatePage();
               if (catePage == 1) controller.jumpTo(0.0);
             } catch (e) {
-              print("第一次进入");
+              // print("第一次进入");
             }
 
-            if (this._goodsListData != null && this._goodsListData.length > 0) {
+            if (this._goodsListData.length > 0) {
               return EasyRefresh(
                 key: _easyRefreshKey,
                 refreshHeader: BallPulseHeader(
@@ -141,7 +143,7 @@ class CateRightContent extends StatelessWidget {
   Widget _goodsPrice(Goods item, bool needLineThrough) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.fromLTRB(10.0, 3.0, 0.0, 3.0),
+      padding: EdgeInsets.fromLTRB(3.0, 3.0, 0.0, 1.0),
       child: Text(
         needLineThrough == true ? "￥${item.oriPrice}" : "￥${item.presentPrice}",
         style: TextStyle(

@@ -5,6 +5,7 @@ import 'package:jspang_flutter_shop/services/http_services.dart';
 import 'package:jspang_flutter_shop/provide/home_provide.dart';
 import 'package:provide/provide.dart';
 import 'dart:convert';
+import 'package:toast/toast.dart';
 
 class HomeService {
   HttpServices httpServices = new HttpServices();
@@ -35,8 +36,13 @@ class HomeService {
       var responseData = json.decode(response.toString());
       if (responseData != "") {
         HomeHotDataModel homeHotData = HomeHotDataModel.fromJson(responseData);
-        // return homeBaseData;
-        this.homeProvide(context).setHomeHotData(homeHotData);
+        if (homeHotData.data == null) {
+          print("我是有底线的");
+          Toast.show("我是有底线的", context,
+              duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+        } else {
+          this.homeProvide(context).setHomeHotData(homeHotData);
+        }
       } else {
         print("responseData:" + responseData.toString());
       }

@@ -169,7 +169,7 @@ class CartProvide with ChangeNotifier {
     // 设置值
     this._setCartGoodsList(_cartGoodsList);
     this.setTotalGoodsNumber(this._totalGoodsNumber);
-    this.setTotalGoodsPrice(this._totalGoodsPrice);
+    this.setTotalGoodsPrice(this._totalGoodsPrice.ceilToDouble());
   }
 
   //
