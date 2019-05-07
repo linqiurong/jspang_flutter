@@ -4,10 +4,10 @@ import 'package:jspang_flutter_shop/model/cart_model.dart';
 import 'package:jspang_flutter_shop/services/cart_services.dart';
 
 class CartItem extends StatelessWidget {
-  CartGoodsModel _cartGoods;
+  final CartGoodsModel _cartGoods;
   CartItem(this._cartGoods);
 
-  CartServices _cartServices = new CartServices();
+  final CartServices _cartServices = new CartServices();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -108,7 +108,7 @@ class CartItem extends StatelessWidget {
             color: bgColor),
         padding: EdgeInsets.all(8.0),
         child: Text(
-          "${reduceStr}",
+          "${reduceStr.toString()}",
           style: TextStyle(
               color: Colors.black12, fontSize: ScreenUtil().setSp(24.0)),
         ),

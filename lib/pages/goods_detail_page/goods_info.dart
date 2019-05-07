@@ -4,10 +4,10 @@ import 'package:jspang_flutter_shop/model/goods_detail_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 
 class GoodsInfo extends StatelessWidget {
-  GoodInfo _goodsInfo;
+  final GoodInfo _goodsInfo;
   GoodsInfo(this._goodsInfo);
 
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     if (this._goodsInfo != null) {
@@ -82,7 +82,7 @@ class GoodsInfo extends StatelessWidget {
     return Container(
       width: ScreenUtil().setWidth(350.0),
       child: Text(
-        "￥${price}",
+        "￥ ${price.toString()}",
         style:
             TextStyle(color: color, decoration: decoration, fontSize: fontSize),
       ),

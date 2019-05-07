@@ -112,6 +112,8 @@ class HomeProvide with ChangeNotifier {
 
   // 获取分类
   List<Category> getCategoryList() {
+    if (_categoryList.length > 10)
+      _categoryList.removeRange(10, _categoryList.length);
     return this._categoryList;
   }
 

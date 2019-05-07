@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/model/cart_model.dart';
 import 'package:jspang_flutter_shop/model/goods_detail_model.dart';
 import 'package:jspang_flutter_shop/services/cart_services.dart';
+import 'package:toast/toast.dart';
 
 class Botton extends StatelessWidget {
-  GoodInfo _goodsInfo;
+  final GoodInfo _goodsInfo;
 
   Botton(this._goodsInfo);
 
-  CartServices _cartServices = new CartServices();
+  final CartServices _cartServices = new CartServices();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -79,6 +80,8 @@ class Botton extends StatelessWidget {
             ? () {
                 // 清除
                 this._cartServices.cartProvide(context).clear();
+                Toast.show("清除成功", context,
+                    duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
               }
             : () {
                 print("加入到购物车");
@@ -96,6 +99,8 @@ class Botton extends StatelessWidget {
                     ._cartServices
                     .cartProvide(context)
                     .setCartGoodsList(tmpCartGoods, context);
+                Toast.show("加入成功", context,
+                    duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
               },
         child: Container(
           padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
@@ -110,7 +115,6 @@ class Botton extends StatelessWidget {
   }
 
   addToCart(BuildContext context) {
-    print("加入到购物车");
     // 获取商品数据
     CartGoodsModel tmpCartGoods = new CartGoodsModel();
     tmpCartGoods.goodsName = this._goodsInfo.goodsName;

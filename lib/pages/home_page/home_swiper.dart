@@ -8,9 +8,9 @@ import 'package:jspang_flutter_shop/routes/application.dart';
 import 'package:fluro/fluro.dart';
 
 class HomeSwiper extends StatelessWidget {
-  List<Slides> _swiperList = [];
+  final List<Slides> _swiperList;
   HomeSwiper(this._swiperList);
-  CommonWidgets commonWidgets = new CommonWidgets();
+  final CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     return Container(

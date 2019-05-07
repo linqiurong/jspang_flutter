@@ -120,23 +120,6 @@ class CartProvide with ChangeNotifier {
     return cartGoodsListStr;
   }
 
-  //
-  _buildCartGoodsList(String cartGoodsListStr) {
-    List<CartGoodsModel> cartGoodsList = [];
-    if (cartGoodsListStr != null) {
-      List tmpResponseDataList = (jsonDecode(cartGoodsListStr) as List);
-      // 判断之前是否有数据 如果有则添加到列表里
-      if (tmpResponseDataList != null && tmpResponseDataList.length > 0) {
-        // 循环所有数据
-        tmpResponseDataList.forEach((item) {
-          _tmp = CartGoodsModel.fromJson(item);
-          cartGoodsList.add(_tmp);
-        });
-      }
-    }
-    return cartGoodsList;
-  }
-
   // 默认全选
   bool tmpCheckAll = true;
   // 获取并统计数量与价格
@@ -202,24 +185,20 @@ class CartProvide with ChangeNotifier {
                 isDelete ? tmpResponseDataList.indexOf(item) : deleteIndex;
 
             // 如果是选中与不选中
-            isChecked == true ? _tmp.isChecked = !_tmp.isChecked : "";
+            if (isChecked == true) _tmp.isChecked = !_tmp.isChecked;
             // print("点击后的状态:" + isChecked.toString());
             // 如果是数量的增减
-            isChecked == false && isReduce == true && _tmp.goodsNumber > 1
-                ? _tmp.goodsNumber -= 1
-                : "";
-            isChecked == false && isReduce == false
-                ? _tmp.goodsNumber += 1
-                : "";
+            if (isChecked == false && isReduce == true && _tmp.goodsNumber > 1)
+              _tmp.goodsNumber -= 1;
+            if (isChecked == false && isReduce == false) _tmp.goodsNumber += 1;
           }
           cartGoodsList.add(_tmp);
         });
       }
     }
     // 删除
-    deleteIndex != -1 && isDelete == true && cartGoodsList.length > 0
-        ? cartGoodsList.removeAt(deleteIndex)
-        : "";
+    if (deleteIndex != -1 && isDelete == true && cartGoodsList.length > 0)
+      cartGoodsList.removeAt(deleteIndex);
 
     // 设置值
     this._setCartGoodsList(cartGoodsList);

@@ -5,8 +5,8 @@ import 'package:jspang_flutter_shop/model/home_base_model.dart';
 
 class HomeFloor extends StatelessWidget {
   // 一层
-  FloorPic _floorpic;
-  List<Floor> floor;
+  final FloorPic _floorpic;
+  final List<Floor> floor;
   // 层级
   HomeFloor(this._floorpic, this.floor);
   @override

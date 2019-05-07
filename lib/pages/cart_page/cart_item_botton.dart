@@ -5,7 +5,7 @@ import 'package:jspang_flutter_shop/provide/cart_provide.dart';
 import 'package:jspang_flutter_shop/services/cart_services.dart';
 
 class CartItemBotton extends StatelessWidget {
-  CartServices _cartServices = new CartServices();
+  final CartServices _cartServices = new CartServices();
   @override
   Widget build(BuildContext context) {
     return Provide<CartProvide>(builder: (context, child, val) {
@@ -33,7 +33,7 @@ class CartItemBotton extends StatelessWidget {
       width: ScreenUtil().setWidth(300.0),
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.fromLTRB(10.0, 8.0, 0, 15.0),
-      child: Text("共${number}件商品"),
+      child: Text("共${number.toString()}件商品"),
     );
   }
 
@@ -42,7 +42,7 @@ class CartItemBotton extends StatelessWidget {
       width: ScreenUtil().setWidth(400.0),
       alignment: Alignment.centerRight,
       child: Text(
-        "小计: ￥ ${price}",
+        "小计: ￥ ${price.toString()}",
         style: TextStyle(color: Colors.red),
         textAlign: TextAlign.right,
       ),

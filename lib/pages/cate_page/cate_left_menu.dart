@@ -9,8 +9,8 @@ import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 class CateLeftMenu extends StatelessWidget {
   // 左侧菜单位置
   List<Category> _cateList = [];
-  CateService _cateServices = new CateService();
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CateService _cateServices = new CateService();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     // 获取数据

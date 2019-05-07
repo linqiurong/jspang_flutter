@@ -6,9 +6,9 @@ import 'package:provide/provide.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class DetailTabBar extends StatelessWidget {
-  String _goodsDetailHtml;
+  final String _goodsDetailHtml;
   DetailTabBar(this._goodsDetailHtml);
-  GoodsDetailService _services = new GoodsDetailService();
+  final GoodsDetailService _services = new GoodsDetailService();
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,6 @@ class DetailTabBar extends StatelessWidget {
         : _goodsDetail(this._goodsDetailHtml); //_goodsComments();
 
     return tmpWidget;
-    // return Container(
-    //   child: Text("Text:" + tabIndex.toString()),
-    // );
   }
 
   Widget _goodsDetail(String detail) {
@@ -69,13 +66,6 @@ class DetailTabBar extends StatelessWidget {
       child: Html(
         data: detail,
       ),
-    );
-  }
-
-  //
-  Widget _goodsComments() {
-    return Container(
-      child: Text("comments"),
     );
   }
 }

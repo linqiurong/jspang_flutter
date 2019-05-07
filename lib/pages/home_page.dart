@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:jspang_flutter_shop/pages/index_page.dart';
 import 'package:jspang_flutter_shop/pages/cate_page.dart';
 import 'package:jspang_flutter_shop/pages/cart_page.dart';
@@ -9,11 +8,6 @@ import 'package:provide/provide.dart';
 import 'package:jspang_flutter_shop/provide/home_provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/services/home_services.dart';
-import 'package:jspang_flutter_shop/provide/home_provide.dart';
-
-/**
- * 首页数据
- */
 
 class HomePage extends StatefulWidget {
   @override

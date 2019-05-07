@@ -4,10 +4,10 @@ import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeShopInfo extends StatelessWidget {
-  ShopInfo _shopInfo;
+  final ShopInfo _shopInfo;
   HomeShopInfo(this._shopInfo);
 
-  CommonWidgets commonWidgets = new CommonWidgets();
+  final CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     if (this._shopInfo != null) {

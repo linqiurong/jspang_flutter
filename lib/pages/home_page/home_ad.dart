@@ -3,10 +3,10 @@ import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 
 class AdBanner extends StatelessWidget {
-  AdvertesPicture _advertesPicture;
+  final AdvertesPicture _advertesPicture;
   AdBanner(this._advertesPicture);
 
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     if (this._advertesPicture != null) {

@@ -6,9 +6,9 @@ import 'package:jspang_flutter_shop/routes/application.dart';
 import 'package:fluro/fluro.dart';
 
 class FloorContent extends StatelessWidget {
-  List<Floor> floor = [];
+  final List<Floor> floor;
   FloorContent(this.floor);
-  CommonWidgets commonWidgets = new CommonWidgets();
+  final CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     if (this.floor.length > 0) {

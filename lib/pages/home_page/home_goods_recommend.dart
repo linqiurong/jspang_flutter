@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jspang_flutter_shop/model/home_base_model.dart';
-import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/routes/application.dart';
 import 'package:fluro/fluro.dart';
 
 class HomeGoodsRecommend extends StatelessWidget {
   // 商品列表
-  List<Recommend> _goodsRecommendList = [];
+  final List<Recommend> _goodsRecommendList;
 
   HomeGoodsRecommend(this._goodsRecommendList);
-
-  CommonWidgets _commonWidgets = new CommonWidgets();
-
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -20,15 +20,15 @@ import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 
 class IndexPage extends StatelessWidget {
   //
-  HomeService homeServices = new HomeService();
+  final HomeService homeServices = new HomeService();
   // easyRefresh
-  GlobalKey<EasyRefreshState> _easyRefreshKey =
+  final GlobalKey<EasyRefreshState> _easyRefreshKey =
       new GlobalKey<EasyRefreshState>();
   //
-  GlobalKey<RefreshHeaderState> _headerKey =
+  final GlobalKey<RefreshHeaderState> _headerKey =
       new GlobalKey<RefreshHeaderState>();
   //
-  GlobalKey<RefreshFooterState> _footerKey =
+  final GlobalKey<RefreshFooterState> _footerKey =
       new GlobalKey<RefreshFooterState>();
   @override
   Widget build(BuildContext context) {

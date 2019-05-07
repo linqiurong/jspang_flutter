@@ -15,9 +15,9 @@ import 'package:jspang_flutter_shop/routes/application.dart';
 class CateRightContent extends StatelessWidget {
   List<Goods> _goodsListData = [];
 
-  CateService _cateServices = new CateService();
+  final CateService _cateServices = new CateService();
 
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
 
   // easyRefresh
   GlobalKey<EasyRefreshState> _easyRefreshKey =
@@ -46,7 +46,7 @@ class CateRightContent extends StatelessWidget {
             // 如果当前页面为1是则跳转到顶部
             try {
               int catePage = _cateServices.cateProvide(context).getCatePage();
-              catePage == 1 ? controller.jumpTo(0.0) : "";
+              if (catePage == 1) controller.jumpTo(0.0);
             } catch (e) {
               print("第一次进入");
             }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/model/goods_detail_model.dart';
 import 'package:jspang_flutter_shop/services/goods_detail_services.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
@@ -17,8 +16,8 @@ class GoodsDetail extends StatelessWidget {
   String _goodsId;
   GoodsDetail(this._goodsId);
   Detail _goodsDetail;
-  GoodsDetailService _services = new GoodsDetailService();
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final GoodsDetailService _services = new GoodsDetailService();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     print("####GoodsDetail####:" + this._goodsId);

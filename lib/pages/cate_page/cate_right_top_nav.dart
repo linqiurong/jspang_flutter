@@ -9,10 +9,11 @@ import 'package:jspang_flutter_shop/widgets/widgets.dart';
 class CateRightTopNav extends StatelessWidget {
   List<BxMallSubDto> _bxMallSubDto = [];
   // 子菜单栏目ID
-  String _rightTopCategoryID = '';
-  CateService _cateServices = new CateService();
+  String _rightTopCategoryID;
 
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CateService _cateServices = new CateService();
+
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     return Container(

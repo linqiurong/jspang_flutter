@@ -6,20 +6,20 @@ import 'package:jspang_flutter_shop/services/cate_services.dart';
 import 'package:jspang_flutter_shop/services/home_services.dart';
 
 class HomeCate extends StatelessWidget {
-  List<Category> _categoryList = [];
+  final List<Category> _categoryList;
   HomeCate(this._categoryList);
 
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
 
-  CateService _cateServices = new CateService();
-  HomeService _homeService = new HomeService();
+  final CateService _cateServices = new CateService();
+  final HomeService _homeService = new HomeService();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.only(top: 5.0),
-      height: ScreenUtil().setHeight(320),
+      height: ScreenUtil().setHeight(260),
       padding: EdgeInsets.all(3.0),
       child: _cateList(context),
     );
@@ -27,8 +27,6 @@ class HomeCate extends StatelessWidget {
 
   Widget _cateList(BuildContext context) {
     if (_categoryList.length > 0) {
-      if (_categoryList.length > 10)
-        _categoryList.removeRange(11, _categoryList.length);
       return GridView.count(
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 5,

@@ -11,8 +11,8 @@ import 'package:jspang_flutter_shop/model/cart_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 
 class CartPage extends StatelessWidget {
-  CartServices _cartServices = new CartServices();
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  final CartServices _cartServices = new CartServices();
+  final CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     // 调用
@@ -37,21 +37,6 @@ class CartPage extends StatelessWidget {
     );
   }
 
-  // List<Widget> _buildCartList3(
-  //     BuildContext context, List<CartGoodsModel> tmpCartGoodsList) {
-  //   List<Widget> tmpWidgetList = [];
-
-  //   if (tmpCartGoodsList != null) {
-  //     tmpCartGoodsList.forEach((item) {
-  //       tmpWidgetList.add(CartItem(item));
-  //     });
-  //   } else {
-  //     tmpWidgetList.add(this._commonWidgets.requestedNone());
-  //   }
-  //   tmpWidgetList.add(CartItemBotton());
-  //   return tmpWidgetList;
-  // }
-
   List<Widget> _buildCartList(BuildContext context) {
     List<Widget> tmpWidgetList = [];
 
@@ -66,30 +51,10 @@ class CartPage extends StatelessWidget {
       tmpWidgetList.add(this._commonWidgets.requestedNone());
     }
     // 如果数据项存在则添加CartItemBotton
-    tmpCartGoodsList != null && tmpCartGoodsList.length > 0
-        ? tmpWidgetList.add(CartItemBotton())
-        : "";
+    if (tmpCartGoodsList != null && tmpCartGoodsList.length > 0)
+      tmpWidgetList.add(CartItemBotton());
     return tmpWidgetList;
   }
-
-  // List<Widget> _buildCartList2(BuildContext context) {
-  //   List<Widget> tmpWidgetList = [];
-  //   // 获取缓存数据
-  //   _cartServices.cartProvide(context).getCartGoodsList().then((result) {
-  //     if (result != "") {
-  //       List tmpCartGoodsList = (jsonDecode(result) as List);
-
-  //       tmpCartGoodsList.forEach((item) {
-  //         tmpWidgetList.add(CartItem(CartGoodsModel.fromJson(item)));
-  //       });
-  //     } else {
-  //       tmpWidgetList.add(this._commonWidgets.requestedNone());
-  //     }
-  //     tmpWidgetList.add(CartItemBotton());
-  //   });
-
-  //   return tmpWidgetList;
-  // }
 
   // 获取数据
   List<CartGoodsModel> _getCartGoodsList(BuildContext context) {

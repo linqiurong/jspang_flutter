@@ -6,10 +6,10 @@ import 'package:jspang_flutter_shop/routes/application.dart';
 import 'package:fluro/fluro.dart';
 
 class HomeHot extends StatelessWidget {
-  List<GoodsHotModel> _goodsHotList = [];
+  final List<GoodsHotModel> _goodsHotList;
   HomeHot(this._goodsHotList);
 
-  CommonWidgets commonWidgets = new CommonWidgets();
+  final CommonWidgets commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
     if (this._goodsHotList != null && this._goodsHotList.length > 0) {

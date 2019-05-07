@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/services/cart_services.dart';
 
 class CartBotton extends StatelessWidget {
-  CartServices _services = new CartServices();
+  final CartServices _services = new CartServices();
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -73,7 +73,7 @@ class CartBotton extends StatelessWidget {
     return Container(
       alignment: Alignment.centerLeft,
       child: Text(
-        "￥${totalPrice}",
+        "￥${totalPrice.toString()}",
         style: TextStyle(fontSize: ScreenUtil().setSp(32.0), color: Colors.red),
       ),
     );
@@ -87,7 +87,8 @@ class CartBotton extends StatelessWidget {
       padding: EdgeInsets.all(5),
       margin: EdgeInsets.all(5.0),
       //width: ScreenUtil().setWidth(40.0),
-      child: Text("结算(${totalNumber})", style: TextStyle(color: Colors.white)),
+      child: Text("结算(${totalNumber.toString()})",
+          style: TextStyle(color: Colors.white)),
       decoration: BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.all(Radius.circular(8))),
