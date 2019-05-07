@@ -6,6 +6,7 @@ import 'package:provide/provide.dart';
 import 'provide/home_provide.dart';
 import 'provide/cate_provide.dart';
 import 'provide/goods_detail_provide.dart';
+import 'provide/cart_provide.dart';
 // 路由
 import 'package:fluro/fluro.dart';
 import 'package:jspang_flutter_shop/routes/routes.dart';
@@ -16,9 +17,11 @@ void main() {
   HomeProvide homeProvide = HomeProvide();
   CateProvide cateProvide = new CateProvide();
   GoodsDetailProvide goodsDetailProvide = new GoodsDetailProvide();
+  CartProvide cartProvide = new CartProvide();
   var provides = new Providers()
     ..provide(Provider<HomeProvide>.value(homeProvide)) // 首页数据provider
     ..provide(Provider<CateProvide>.value(cateProvide)) // 分类
+    ..provide(Provider<CartProvide>.value(cartProvide)) // 分类
     ..provide(Provider<GoodsDetailProvide>.value(goodsDetailProvide)); // 商品详情
 
   runApp(ProviderNode(

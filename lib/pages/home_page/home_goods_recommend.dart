@@ -3,6 +3,7 @@ import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/routes/application.dart';
+import 'package:fluro/fluro.dart';
 
 class HomeGoodsRecommend extends StatelessWidget {
   // 商品列表
@@ -53,7 +54,8 @@ class HomeGoodsRecommend extends StatelessWidget {
   Widget _goodsRecommendItem(BuildContext context, Recommend item) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, "/detail/${item.goodsId}");
+        Application.router.navigateTo(context, "/detail/${item.goodsId}",
+            transition: TransitionType.fadeIn);
       },
       child: Container(
         padding: EdgeInsets.all(3.0),

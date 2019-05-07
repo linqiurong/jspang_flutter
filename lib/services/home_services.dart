@@ -31,7 +31,7 @@ class HomeService {
     // print("currentHotPage:" + currentHotPage.toString());
     Map page = {"page": currentHotPage};
     httpServices.request('homeHot', params: page).then((response) {
-      // print("热销商品数据" + response.toString());
+      //print("热销商品数据" + response.toString());
       var responseData = json.decode(response.toString());
       if (responseData != "") {
         HomeHotDataModel homeHotData = HomeHotDataModel.fromJson(responseData);

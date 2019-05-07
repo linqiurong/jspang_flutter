@@ -60,6 +60,18 @@ class CateProvide with ChangeNotifier {
     return this._subCateList;
   }
 
+  // 获取子菜单
+  List<BxMallSubDto> getSubCateListDataByCateID({@required String cateID}) {
+    List<BxMallSubDto> tmpList = [];
+    this._cateList.forEach((item) {
+      if (item.mallCategoryId == cateID) {
+        tmpList = item.bxMallSubDto;
+        return;
+      }
+    });
+    return tmpList;
+  }
+
   // 设置左侧顶部菜单位置
   setLeftMenuIndex(int leftMenuIndex) {
     this._leftMenuIndex = leftMenuIndex;

@@ -23,9 +23,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   // Wideget
-  CommonWidgets _commonWidgets = new CommonWidgets();
+  // CommonWidgets _commonWidgets = new CommonWidgets();
   HomeService _services = new HomeService();
-  HomeProvide _homeProvide = new HomeProvide();
+  // HomeProvide _homeProvide = new HomeProvide();
 
   // int _currentTabIndex = 0;
 

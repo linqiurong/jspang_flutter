@@ -15,7 +15,7 @@ class CommonWidgets {
 
   // 未找到相应数据
   Widget requestedNone() {
-    return center('未获取到数据...');
+    return center('空空如也...');
   }
 
   Widget error() {

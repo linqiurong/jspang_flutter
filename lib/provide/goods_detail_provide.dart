@@ -4,7 +4,7 @@ import 'package:jspang_flutter_shop/model/goods_detail_model.dart';
 class GoodsDetailProvide with ChangeNotifier {
   String _goodsId = '';
 
-  Detail _goodsDetail = null;
+  Detail _goodsDetail;
 
   int _tabIndex = 0;
 

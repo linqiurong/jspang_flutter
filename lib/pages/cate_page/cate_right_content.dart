@@ -8,6 +8,7 @@ import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
+import 'package:fluro/fluro.dart';
 
 import 'package:jspang_flutter_shop/routes/application.dart';
 
@@ -107,7 +108,8 @@ class CateRightContent extends StatelessWidget {
       color: Colors.white,
       child: InkWell(
         onTap: () {
-          Application.router.navigateTo(context, "/detail/${item.goodsId}");
+          Application.router.navigateTo(context, "/detail/${item.goodsId}",
+              transition: TransitionType.fadeIn);
         },
         child: Column(
           children: <Widget>[

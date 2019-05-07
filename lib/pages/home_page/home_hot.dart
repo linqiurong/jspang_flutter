@@ -3,6 +3,7 @@ import 'package:jspang_flutter_shop/model/home_hot_model.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/routes/application.dart';
+import 'package:fluro/fluro.dart';
 
 class HomeHot extends StatelessWidget {
   List<GoodsHotModel> _goodsHotList = [];
@@ -76,7 +77,8 @@ class HomeHot extends StatelessWidget {
   Widget _goodsItem(BuildContext context, GoodsHotModel item) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, "/detail/${item.goodsId}");
+        Application.router.navigateTo(context, "/detail/${item.goodsId}",
+            transition: TransitionType.fadeIn);
       },
       child: Container(
         width: ScreenUtil().setWidth(372.0),

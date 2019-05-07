@@ -58,7 +58,7 @@ class GoodsDetail extends StatelessWidget {
               ),
               Positioned(
                 bottom: 0,
-                child: Botton(),
+                child: Botton(this._goodsDetail.goodInfo),
               )
             ],
           ),

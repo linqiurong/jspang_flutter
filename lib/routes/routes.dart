@@ -5,7 +5,6 @@ import 'package:jspang_flutter_shop/routes/goods_detail_handle.dart';
 class Routes {
   // 详情
   static String _goodsDetail = "/detail/:id";
-  static String _cateList = "/cate/:id";
 
   static void configureRoutes(Router router) {
     router.notFoundHandler = new Handler(

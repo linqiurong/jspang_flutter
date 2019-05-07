@@ -28,7 +28,7 @@ class HttpServices {
       }
       // 请求成功
       if (response.statusCode == 200) {
-        // print("请求结果:" + response.data);
+        // print("请求结果:" + response.data.toString());
         // 请求成功数据处理
         return response.data.toString();
       } else {

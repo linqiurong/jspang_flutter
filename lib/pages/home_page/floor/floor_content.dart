@@ -3,6 +3,7 @@ import 'package:jspang_flutter_shop/widgets/widgets.dart';
 import 'package:jspang_flutter_shop/model/home_base_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/routes/application.dart';
+import 'package:fluro/fluro.dart';
 
 class FloorContent extends StatelessWidget {
   List<Floor> floor = [];
@@ -81,7 +82,8 @@ class FloorContent extends StatelessWidget {
       width: ScreenUtil().setWidth(375.0),
       child: InkWell(
         onTap: () => {
-              Application.router.navigateTo(context, "/detail/${floor.goodsId}")
+              Application.router.navigateTo(context, "/detail/${floor.goodsId}",
+                  transition: TransitionType.fadeIn)
             },
         child: Image.network("${floor.image}"),
       ),

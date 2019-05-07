@@ -3,40 +3,54 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jspang_flutter_shop/model/category.dart';
 import 'package:jspang_flutter_shop/services/cate_services.dart';
 import 'package:jspang_flutter_shop/widgets/widgets.dart';
-import 'package:provide/provide.dart';
-import 'package:jspang_flutter_shop/provide/cate_provide.dart';
+// import 'package:provide/provide.dart';
+// import 'package:jspang_flutter_shop/provide/cate_provide.dart';
 
 class CateLeftMenu extends StatelessWidget {
   // 左侧菜单位置
   List<Category> _cateList = [];
+  CateLeftMenu(this._cateList);
   CateService _cateServices = new CateService();
   CommonWidgets _commonWidgets = new CommonWidgets();
   @override
   Widget build(BuildContext context) {
-    // 获取数据
-    _cateServices.getCateListData(context);
-    // 获取当前点击的数据
-    // String currentLeftMenuCategoryID =
-    //     _cateServices.cateProvide(context).getLeftMenuCategoryID();
-    // 获取分类数据
+    if (this._cateList != null && this._cateList.length > 0) {
+      return Container(
+        child: this._menuList(context),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            border: Border(
+                right: BorderSide(
+                    width: ScreenUtil().setWidth(1.0), color: Colors.black12))),
+      );
+    } else {
+      return _commonWidgets.requestingData();
+    }
+
+    // // 获取数据
+    // _cateServices.getCateListData(context);
+    // // 获取当前点击的数据
+    // // String currentLeftMenuCategoryID =
+    // //     _cateServices.cateProvide(context).getLeftMenuCategoryID();
+    // // 获取分类数据
     // this._cateList = _cateServices.cateProvide(context).getCateListData();
-    return Provide<CateProvide>(builder: (context, child, value) {
-      // 获取分类数据
-      this._cateList = _cateServices.cateProvide(context).getCateListData();
-      if (this._cateList != null && this._cateList.length > 0) {
-        return Container(
-          child: this._menuList(context),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              border: Border(
-                  right: BorderSide(
-                      width: ScreenUtil().setWidth(1.0),
-                      color: Colors.black12))),
-        );
-      } else {
-        return _commonWidgets.requestingData();
-      }
-    });
+    // return Provide<CateProvide>(builder: (context, child, value) {
+    //   // 获取分类数据
+    //   this._cateList = _cateServices.cateProvide(context).getCateListData();
+    //   if (this._cateList != null && this._cateList.length > 0) {
+    //     return Container(
+    //       child: this._menuList(context),
+    //       alignment: Alignment.center,
+    //       decoration: BoxDecoration(
+    //           border: Border(
+    //               right: BorderSide(
+    //                   width: ScreenUtil().setWidth(1.0),
+    //                   color: Colors.black12))),
+    //     );
+    //   } else {
+    //     return _commonWidgets.requestingData();
+    //   }
+    // });
   }
 
   Widget _menuList(context) {
