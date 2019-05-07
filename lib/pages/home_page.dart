@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage>
     return Provide<HomeProvide>(builder: (BuildContext context, child, val) {
       // 获取当前页面
       int currentIndex = _services.homeProvide(context).getBottonIndex();
+      print("currentIndex:" + currentIndex.toString());
       return Scaffold(
         appBar: AppBar(
           title: Text("百姓生活+"),
@@ -61,9 +62,6 @@ class _HomePageState extends State<HomePage>
           fixedColor: Colors.pink,
           items: items,
           onTap: (int index) {
-            // setState(() {
-            //   this._currentTabIndex = index;
-            // });
             _services.homeProvide(context).setBottonIndex(index);
           },
           currentIndex: currentIndex,

@@ -5,6 +5,8 @@ import 'dart:convert';
 
 class CartProvide with ChangeNotifier {
   int _totalGoodsNumber = 0;
+  int _cartGoodsNumber = 0;
+
   double _totalGoodsPrice = 0.0;
 
   List<CartGoodsModel> _cartGoodsList = [];
@@ -24,6 +26,15 @@ class CartProvide with ChangeNotifier {
 
   setTotalGoodsNumber(int number) {
     this._totalGoodsNumber = number;
+    notifyListeners();
+  }
+
+  int getCartGoodsNumber() {
+    return this._cartGoodsNumber;
+  }
+
+  setCartGoodsNumber(int number) {
+    this._cartGoodsNumber = number;
     notifyListeners();
   }
 
@@ -49,7 +60,8 @@ class CartProvide with ChangeNotifier {
 
   CartGoodsModel _tmp;
   // 设置购物车列表
-  setCartGoodsList(CartGoodsModel cartGoods, BuildContext context) async {
+  Future setCartGoodsList(
+      CartGoodsModel cartGoods, BuildContext context) async {
     //print("设置购物车列表");
     // print("新加入:" + cartGoods.toJson().toString());
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -103,9 +115,10 @@ class CartProvide with ChangeNotifier {
     }
   }
 
-  clear() async {
+  Future clear() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("cartGoodsList", null);
+    await getCartGoodsList();
   }
 
   // 获取购物车商品数据
@@ -113,6 +126,7 @@ class CartProvide with ChangeNotifier {
     this._cartGoodsList = [];
     this._totalGoodsNumber = 0;
     this._totalGoodsPrice = 0.0;
+    this._cartGoodsNumber = 0;
     // 获取数据
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String cartGoodsListStr = prefs.getString('cartGoodsList');
@@ -133,7 +147,7 @@ class CartProvide with ChangeNotifier {
         tmpResponseDataList.forEach((item) {
           _tmp = CartGoodsModel.fromJson(item);
           _cartGoodsList.add(_tmp);
-
+          this._cartGoodsNumber += _tmp.goodsNumber;
           if (_tmp.isChecked == true) {
             this._totalGoodsNumber += _tmp.goodsNumber;
             this._totalGoodsPrice += _tmp.goodsNumber * _tmp.presentPrice;
@@ -146,6 +160,12 @@ class CartProvide with ChangeNotifier {
     }
     this._checkAll = tmpCheckAll;
     this.setCheckAll(tmpCheckAll);
+    if (this._cartGoodsNumber == 0) {
+      this.setCheckAll(false);
+    } else {
+      this.setCheckAll(tmpCheckAll);
+    }
+    this.setCartGoodsNumber(this._cartGoodsNumber);
     // 设置值
     this._setCartGoodsList(_cartGoodsList);
     this.setTotalGoodsNumber(this._totalGoodsNumber);
@@ -153,7 +173,7 @@ class CartProvide with ChangeNotifier {
   }
 
   //
-  change(
+  Future change(
     String goodsID, [
     bool isChecked = false,
     bool isReduce = false,
