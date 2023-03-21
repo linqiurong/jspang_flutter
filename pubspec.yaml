@@ -22,7 +22,7 @@ dependencies:
   provide: ^1.0.2 # google 状态管理
   fluro: "^1.4.0" # 路由管理
   flutter_swiper: ^1.1.4 # 轮播 
-  dio: ^2.0.10 # http请求
+  dio: ">=2.0.10 <6.0.0" # http请求
   flutter_screenutil: ^0.5.1 #屏幕适配
   url_launcher: ^5.0.1 # url_lancher 打开网址 发送邮件 拨打电话
   flutter_easyrefresh: ^1.2.7 # 下拉刷新 与 上拉加载更多 
